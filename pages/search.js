@@ -18,7 +18,8 @@ function Search({ searchResults }) {
   return (
     <div>
       <Head>
-        <title>search - Airbnb</title>
+        <title>Search - Vacation Homes & Condo Rentals - Airbnb - Airbnb</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Header placeholder={`${location} | ${range} | ${noOfGuests} guests`} />
       <main className="flex">
