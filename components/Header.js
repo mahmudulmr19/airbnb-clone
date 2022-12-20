@@ -11,16 +11,30 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-function Header() {
+import { useRouter } from "next/router";
+function Header({ placeholder }) {
   const [searchInput, setsearchInput] = useState("");
   const [startDate, setstartDate] = useState(new Date());
   const [endDate, setendDate] = useState(new Date());
   const [noOfGuests, setnoOfGuests] = useState(1);
+  const router = useRouter();
 
   const handleSelect = (ranges) => {
     console.log(ranges);
     setstartDate(ranges.selection.startDate);
     setendDate(ranges.selection.endDate);
+  };
+
+  const search = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        noOfGuests,
+      },
+    });
   };
 
   // const resetInput = () => {
@@ -40,7 +54,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       {/* left */}
-      <div>
+      <div onClick={() => router.push("/")}>
         <Image
           className="header__logo  cursor-pointer my-auto"
           src="https://res.cloudinary.com/drilwd3mg/image/upload/v1670883714/assets/Airbnb%20/Airbnb_Logo_B%C3%A9lo.svg_cinuac.png"
@@ -57,7 +71,7 @@ function Header() {
           onChange={(e) => setsearchInput(e.target.value)}
           className="pl-5 text-sm text-gray-600 placeholder-gray-600 outline-none flex-grow   bg-transparent"
           type="text"
-          placeholder="Start your search"
+          placeholder={placeholder || "Start your search"}
         />
         <SearchIcon className=" hidden md:inline-flex md:mx-2 h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer" />
       </div>
@@ -97,7 +111,9 @@ function Header() {
             <button onClick={resetInput} className="flex-grow text-gray-500">
               Cancel
             </button>
-            <button className="flex-grow text-red-400">Search</button>
+            <button onClick={search} className="flex-grow text-red-400">
+              Search
+            </button>
           </div>
         </div>
       )}
