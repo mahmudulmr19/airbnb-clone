@@ -111,11 +111,11 @@ function Header({ placeholder }) {
             <button onClick={resetInput} className="flex-grow text-gray-500">
               Cancel
             </button>
-<div onClick={resetInput}>
-            <button onClick={search} className="flex-grow text-red-400">
-              Search
-            </button>
-</div>
+            <div className="pl-28" onClick={resetInput}>
+              <button onClick={search} className="flex-grow mr-36 text-red-400">
+                Search
+              </button>
+            </div>
           </div>
         </div>
       )}
