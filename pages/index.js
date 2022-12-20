@@ -10,7 +10,7 @@ export default function index({ exploreData, cardData }) {
     <div>
       <Head>
         <title>Vacation Homes & Condo Rentals - Airbnb - Airbnb</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
 
